@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :restaurants do
     #/restuarants/...
     collection do
-      get :top
+      get :category
     end
   end
 end

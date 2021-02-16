@@ -7,8 +7,8 @@ class RestaurantsController < ApplicationController
   end
 
   # GET top restauarants
-  def top
-    @restaurants = Restaurant.where(rating: 5)
+  def category
+    @restaurants = Restaurant.where(category: 'japanese')
   end
 
   # GET /restuarants/1
