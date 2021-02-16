@@ -1,5 +1,5 @@
 class Review < ApplicationRecord
-  belongs_to :restaurant
+  belongs_to :restaurants
 
   RATING = [1..5]
   validates :rating, presence: true, inclusion: { in: RATING }
