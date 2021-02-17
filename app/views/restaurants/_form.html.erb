@@ -5,7 +5,9 @@
   <%= f.input :phone_number %>
   <% if @restaurant.id %>
     <%= f.submit 'Update', class: 'btn btn-info' %>
+    <%= link_to 'Home', restaurants_path, class: "btn btn-primary" %>
   <% else %>
     <%= f.submit 'Add', class: 'btn btn-info' %>
+    <%= link_to 'Home', restaurants_path, class: "btn btn-primary" %>
   <% end %>
 <% end %>

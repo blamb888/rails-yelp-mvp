@@ -6,9 +6,25 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
   end
 
-  # GET top restauarants
-  def category
-    @restaurants = Restaurant.where(category: 'japanese')
+  # GET restauarants by category
+  def japanese
+    @restaurants = Restaurant.where(category: 'Japanese')
+  end
+
+  def italian
+    @restaurants = Restaurant.where(category: 'Italian')
+  end
+
+  def french
+    @restaurants = Restaurant.where(category: 'French')
+  end
+
+  def belgian
+    @restaurants = Restaurant.where(category: 'Belgian')
+  end
+
+  def chinese
+    @restaurants = Restaurant.where(category: 'Chinese')
   end
 
   # GET /restuarants/1

@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :restaurants do
     #/restuarants/...
     collection do
-      get :category
+      get :japanese
+      get :italian
+      get :french
+      get :belgian
+      get :chinese
     end
     resources :reviews, only: [:new, :create]
   end

@@ -1,7 +1,8 @@
+<!--Navbar-->
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <a class="navbar-brand" href="#">
     <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" />
-</a>
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -25,7 +26,7 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-      <%= image_tag "doge_png.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data_toggle: "dropdown", aria_haspopup: "true", aria_expanded: "false" %>
+        <%= image_tag "doge_png.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data_toggle: "dropdown", aria_haspopup: "true", aria_expanded: "false" %>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Action</a>
           <a class="dropdown-item" href="#">Another action</a>
@@ -35,22 +36,30 @@
   </div>
 </div>
 
-
-
-
-
 <div class="container">
-  <h1>Restaurants</h1>
-  <div class="cards">
-    <% @restaurants.each do |restaurant| %>
-      <div class="card-product">
-        <img src="https://source.unsplash.com/1600x900/?food,delicious" />
-        <div class="card-product-infos">
-          <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
-          <p><%= restaurant.category %> - <%= restaurant.address %></p>
-          <p>Phone Number:<%= restaurant.phone_number %></p>
+  <% @restaurants.each do |restaurant| %>
+    <div class="container d-flex justify-content-center">
+      <div class="card col-6" style="width: 22rem; margin-top: 50px;">
+        <img class="card-img-top py-3" src="https://source.unsplash.com/1600x900/?pizza,italian" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%= restaurant.name %></h5>
+          <p class="card-text"><%= restaurant.address %></p>
+          <p class="card-text"><%= restaurant.category %></p>
+          <p class="card-text"><%= restaurant.phone_number %></p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <% restaurant.reviews.each do |review| %>
+          <li class="list-group-item"><%= review.content %></li>
+          <li class="list-group-item"><%= review.rating %></li>
+          <%= link_to 'Delete', review_path(review), method: :delete %>
+          <% end %>
+        </ul>
+        <div class="card-body">
+          <%= link_to 'Add', new_restaurant_review_path(restaurant), class: "btn btn-success" %>
+          <%= link_to 'Edit', edit_restaurant_path(restaurant), class: "btn btn-primary" %>
+          <%= link_to 'Back', restaurants_path, class: "btn btn-secondary" %>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>

@@ -1,24 +1,61 @@
-<div class="container">
-  <h1><%= @restaurant.name %></h1>
-  <p><%= @restaurant.address %></p>
-  <p><%= @restaurant.category %></p>
-  <p>📞 <%= @restaurant.phone_number %></p>
-  <% if @restaurant.reviews.any? %>
-  <div class="form-group">
-    <ul class="list">
-      <% @restaurant.reviews.each do |review| %>
-        <li><%= review.content %></li>
-        <li><%= review.rating  %></li>
-        <%= link_to 'Delete', review_path(review), method: :delete %>
-        <hr>
-      <% end %>
+<!--Navbar-->
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <a class="navbar-brand" href="#">
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" />
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to 'Home', restaurants_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to 'Italian', italian_restaurants_path, class: "dropdown-item" %>
+          <%= link_to 'Japanese', japanese_restaurants_path, class: "dropdown-item" %>
+          <%= link_to 'French', french_restaurants_path, class: "dropdown-item" %>
+          <%= link_to 'Belgian', belgian_restaurants_path, class: "dropdown-item" %>
+          <%= link_to 'Chinese', chinese_restaurants_path, class: "dropdown-item" %>
+          <div class="dropdown-divider"></div>
+          <%= link_to 'Add restaurant', new_restaurant_path, class: "dropdown-item" %>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <%= image_tag "doge_png.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data_toggle: "dropdown", aria_haspopup: "true", aria_expanded: "false" %>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+        </div>
+      </li>
     </ul>
   </div>
-  <% end %>
-  <div class="form-group">
-    <%= link_to 'Add', new_restaurant_review_path(@restaurant), class: "btn btn-success" %>
-    <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-primary" %>
-    <%= link_to 'Back', restaurants_path, class: "btn btn-secondary" %>
+</div>
+<!--Restaurant Cards-->
+<div class="container d-flex justify-content-center">
+  <div class="card col-6" style="width: 22rem; margin-top: 50px;">
+    <img class="card-img-top py-3" src="https://source.unsplash.com/1600x900/?food,delicious" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><%= @restaurant.name %></h5>
+      <p class="card-text"><%= @restaurant.address %></p>
+      <p class="card-text"><%= @restaurant.category %></p>
+      <p class="card-text"><%= @restaurant.phone_number %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <% @restaurant.reviews.each do |review| %>
+      <li class="list-group-item"><%= review.content %></li>
+      <li class="list-group-item"><%= review.rating %></li>
+      <%= link_to 'Delete', review_path(review), method: :delete %>
+      <% end %>
+    </ul>
+    <div class="card-body">
+      <%= link_to 'Add', new_restaurant_review_path(@restaurant), class: "btn btn-success" %>
+      <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-primary" %>
+      <%= link_to 'Back', restaurants_path, class: "btn btn-secondary" %>
+    </div>
   </div>
-
 </div>
