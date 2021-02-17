@@ -3,13 +3,18 @@
   <p><%= @restaurant.address %></p>
   <p><%= @restaurant.category %></p>
   <p>📞 <%= @restaurant.phone_number %></p>
+  <% if @restaurant.reviews.any? %>
   <div class="form-group">
-    <% @restaurant.reviews.each do |review| %>
-      <h3><%= review.content %></h3>
-      <h2><%= review.rating  %></h2>
-      <hr>
-    <% end %>
+    <ul class="list">
+      <% @restaurant.reviews.each do |review| %>
+        <li><%= review.content %></li>
+        <li><%= review.rating  %></li>
+        <%= link_to 'Delete', review_path(review), method: :delete %>
+        <hr>
+      <% end %>
+    </ul>
   </div>
+  <% end %>
   <div class="form-group">
     <%= link_to 'Add', new_restaurant_review_path(@restaurant), class: "btn btn-success" %>
     <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-primary" %>

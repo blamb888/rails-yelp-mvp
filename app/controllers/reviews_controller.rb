@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :find_restaurant
+  before_action :find_restaurant, except: [:destroy]
+
   def new
     @review = Review.new
   end
@@ -27,7 +28,7 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:content)
+    params.require(:review).permit(:content, :rating)
   end
 
 end

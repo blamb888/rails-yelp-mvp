@@ -1,7 +1,7 @@
 <div class="container">
   <%= simple_form_for [@restaurant, @review] do |f| %>
     <%= f.input :content  %>
-    <%= f.input :rating, collection: Review::RATING, include_blank: false %>
+    <%= f.input :rating, collection: 0..5, include_blank: false %>
     <%= f.submit class: "btn btn-primary btn-block"  %>
   <% end %>
   <div class="containter my-3">
